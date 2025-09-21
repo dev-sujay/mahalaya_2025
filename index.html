@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মা আসছেন - Durga Puja 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Floating flowers */
+        .flower {
+            position: absolute;
+            font-size: 24px;
+            user-select: none;
+        }
+
+        .flower-1 {
+            top: 40px;
+            left: 20px;
+            animation: float-slow 4s ease-in-out infinite;
+        }
+
+        .flower-2 {
+            top: 80px;
+            right: 32px;
+            font-size: 20px;
+            animation: float-medium 3s ease-in-out infinite;
+        }
+
+        .flower-3 {
+            bottom: 128px;
+            left: 32px;
+            animation: float-fast 2s ease-in-out infinite;
+        }
+
+        .flower-4 {
+            bottom: 80px;
+            right: 48px;
+            font-size: 20px;
+            animation: float-slow 4s ease-in-out infinite;
+        }
+
+        .flower-5 {
+            top: 33%;
+            left: 8px;
+            font-size: 18px;
+            animation: float-medium 3s ease-in-out infinite;
+        }
+
+        .flower-6 {
+            top: 66%;
+            right: 16px;
+            font-size: 18px;
+            animation: float-fast 2s ease-in-out infinite;
+        }
+
+        /* Durga face background */
+        .durga-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 420px;
+            height: 420px;
+            background-image: url('/maa.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.25;
+            filter: brightness(1.1) contrast(0.9);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1), transparent);
+        }
+
+        /* Main content */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+            animation: text-glow 3s ease-in-out infinite;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 24px;
+            animation: fade-in-up 1s ease-out forwards;
+        }
+
+        .trishul {
+            font-size: 2rem;
+            color: #f59e0b;
+            margin-bottom: 24px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Countdown */
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(2px);
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .countdown-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .countdown-bengali {
+            font-size: 0.75rem;
+            color: #f59e0b;
+        }
+
+        /* Improved Audio Controls */
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 16px 24px;
+            border-radius: 20px;
+            backdrop-filter: blur(2px);
+            margin-bottom: 32px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .audio-controls:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25), 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .audio-controls button {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            min-width: 48px;
+            min-height: 48px;
+        }
+
+        .audio-controls button:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+        }
+
+        .audio-controls button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .audio-controls svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        /* Volume Slider */
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .volume-icon {
+            font-size: 18px;
+            color: #f59e0b;
+        }
+
+        .audio-controls input[type="range"] {
+            width: 120px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+            border-radius: 3px;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .audio-controls input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #f59e0b;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .audio-controls input[type="range"]::-webkit-slider-thumb:hover {
+            background: #d97706;
+            transform: scale(1.1);
+        }
+
+        .audio-controls input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: #f59e0b;
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Audio visualizer */
+        .audio-visualizer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            margin-bottom: 24px;
+            height: 24px;
+        }
+
+        .audio-bar {
+            width: 4px;
+            background: linear-gradient(to top, #f59e0b, #fbbf24);
+            border-radius: 2px;
+            animation: audio-bar 0.8s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .audio-bar:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .audio-bar:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .audio-bar:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .audio-bar:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .audio-bar:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        /* Bottom text */
+        .blessing-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            animation: fade-in-up 1s ease-out forwards;
+            animation-delay: 1s;
+            font-weight: 500;
+        }
+
+        .sub-blessing {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            animation: fade-in-up 1s ease-out forwards;
+            animation-delay: 1.5s;
+        }
+
+        /* Symbol row */
+        .symbols {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            font-size: 1.125rem;
+            animation: fade-in-up 1s ease-out forwards;
+            animation-delay: 2s;
+        }
+
+        .symbol {
+            color: #f59e0b;
+        }
+
+        .symbol:nth-child(1) {
+            animation: float-slow 4s ease-in-out infinite;
+        }
+
+        .symbol:nth-child(2) {
+            animation: float-medium 3s ease-in-out infinite;
+        }
+
+        .symbol:nth-child(3) {
+            color: white;
+            animation: float-fast 2s ease-in-out infinite;
+        }
+
+        .symbol:nth-child(4) {
+            animation: float-medium 3s ease-in-out infinite;
+        }
+
+        .symbol:nth-child(5) {
+            animation: float-slow 4s ease-in-out infinite;
+        }
+
+        /* Animations */
+        @keyframes text-glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(245, 158, 11, 0.5), 0 0 40px rgba(245, 158, 11, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 0 60px rgba(245, 158, 11, 0.5);
+            }
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float-slow {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        @keyframes float-medium {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(-3deg);
+            }
+        }
+
+        @keyframes float-fast {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(3deg);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+            }
+
+            50% {
+                text-shadow: 0 0 40px rgba(245, 158, 11, 0.8);
+            }
+        }
+
+        @keyframes audio-bar {
+
+            0%,
+            100% {
+                height: 8px;
+            }
+
+            50% {
+                height: 24px;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .durga-bg {
+                width: 280px;
+                height: 280px;
+            }
+
+            .countdown-value {
+                font-size: 1.25rem;
+            }
+
+            .audio-controls {
+                padding: 12px 16px;
+                gap: 12px;
+            }
+
+            .volume-container {
+                padding: 6px 12px;
+            }
+
+            .audio-controls input[type="range"] {
+                width: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .durga-bg {
+                width: 240px;
+                height: 240px;
+            }
+
+            .audio-controls {
+                flex-wrap: wrap;
+                padding: 16px;
+                gap: 8px;
+            }
+
+            .volume-container {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Audio status indicator */
+        .audio-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(245, 158, 11, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .audio-status.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Background audio with fallback -->
+        <audio id="bgAudio" loop preload="auto">
+            <source src="/audio.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- Audio Status Indicator -->
+        <div id="audioStatus" class="audio-status"></div>
+
+        <!-- Floating flowers -->
+        <div class="flower flower-1">🌺</div>
+        <div class="flower flower-2">🪷</div>
+        <div class="flower flower-3">🌸</div>
+        <div class="flower flower-4">🌺</div>
+        <div class="flower flower-5">🪷</div>
+        <div class="flower flower-6">🌸</div>
+
+        <!-- Durga face background -->
+        <div class="durga-bg"></div>
+        <div class="overlay"></div>
+
+        <!-- Main content -->
+        <div class="content">
+            <h1 class="main-title">মা আসছেন</h1>
+            <p class="subtitle">Maa Durga is Coming</p>
+
+            <div class="trishul">🔱</div>
+
+            <!-- Countdown timer -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                    <div class="countdown-bengali">দিন</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                    <div class="countdown-bengali">ঘন্টা</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                    <div class="countdown-bengali">মিনিট</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                    <div class="countdown-bengali">সেকেন্ড</div>
+                </div>
+            </div>
+
+            <!-- Improved Audio Controls -->
+            <div class="audio-controls">
+                <button id="playPauseBtn" aria-label="Play/Pause" title="Play/Pause">
+                    <svg id="playPauseIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
+                        viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"></path>
+                    </svg>
+                </button>
+
+                <div class="volume-container">
+                    <span class="volume-icon">🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.3" title="Volume">
+                </div>
+
+                <button id="muteBtn" aria-label="Mute/Unmute" title="Mute/Unmute">
+                    <svg id="muteIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Audio visualizer -->
+            <div class="audio-visualizer" id="visualizer">
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+            </div>
+
+            <p class="blessing-text">শুভ মহালয়া</p>
+            <p class="sub-blessing">May Maa Durga bless you with strength and happiness</p>
+
+            <div class="symbols">
+                <span class="symbol">🪷</span>
+                <span class="symbol">🔱</span>
+                <span class="symbol">ॐ</span>
+                <span class="symbol">🔱</span>
+                <span class="symbol">🪷</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get audio element and controls
+        const audio = document.getElementById('bgAudio');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playPauseIcon = document.getElementById('playPauseIcon');
+        const muteBtn = document.getElementById('muteBtn');
+        const muteIcon = document.getElementById('muteIcon');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const audioStatus = document.getElementById('audioStatus');
+
+        // Set initial volume
+        audio.volume = 0.3;
+
+        // Show status message
+        function showStatus(message, duration = 2000) {
+            audioStatus.textContent = message;
+            audioStatus.classList.add('show');
+            setTimeout(() => {
+                audioStatus.classList.remove('show');
+            }, duration);
+        }
+
+        // Update play/pause button icon
+        function updatePlayPauseIcon(isPlaying) {
+            if (isPlaying) {
+                // Pause icon
+                playPauseIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>';
+            } else {
+                // Play icon
+                playPauseIcon.innerHTML = '<path d="M8 5v14l11-7z"></path>';
+            }
+        }
+
+        // Update mute button icon
+        function updateMuteIcon(isMuted) {
+            if (isMuted) {
+                // Muted icon
+                muteIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zM3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"/><path d="m16.5 12 3-3m0 3-3-3" stroke="white" stroke-width="2"/>';
+            } else {
+                // Volume icon
+                muteIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+            }
+        }
+
+        // Play/Pause functionality
+        playPauseBtn.addEventListener('click', async () => {
+            try {
+                if (audio.paused) {
+                    await audio.play();
+                    updatePlayPauseIcon(true);
+                    showStatus('🎵 Playing audio');
+                } else {
+                    audio.pause();
+                    updatePlayPauseIcon(false);
+                    showStatus('⏸️ Audio paused');
+                }
+            } catch (error) {
+                console.error('Error playing audio:', error);
+                showStatus('❌ Audio playback failed');
+            }
+        });
+
+        // Volume control
+        volumeSlider.addEventListener('input', (e) => {
+            const volume = parseFloat(e.target.value);
+            audio.volume = volume;
+
+            // Update volume icon based on level
+            const volumeIcon = document.querySelector('.volume-icon');
+            if (volume === 0) {
+                volumeIcon.textContent = '🔇';
+            } else if (volume < 0.3) {
+                volumeIcon.textContent = '🔈';
+            } else if (volume < 0.7) {
+                volumeIcon.textContent = '🔉';
+            } else {
+                volumeIcon.textContent = '🔊';
+            }
+        });
+
+        // Mute/Unmute functionality
+        muteBtn.addEventListener('click', () => {
+            audio.muted = !audio.muted;
+            updateMuteIcon(audio.muted);
+
+            if (audio.muted) {
+                showStatus('🔇 Audio muted');
+                document.querySelector('.volume-icon').textContent = '🔇';
+            } else {
+                showStatus('🔊 Audio unmuted');
+                const volume = audio.volume;
+                const volumeIcon = document.querySelector('.volume-icon');
+                if (volume < 0.3) {
+                    volumeIcon.textContent = '🔈';
+                } else if (volume < 0.7) {
+                    volumeIcon.textContent = '🔉';
+                } else {
+                    volumeIcon.textContent = '🔊';
+                }
+            }
+        });
+
+        // Audio event listeners
+        audio.addEventListener('loadstart', () => {
+            showStatus('⏳ Loading audio...');
+        });
+
+        audio.addEventListener('canplay', () => {
+            showStatus('✅ Audio ready to play');
+        });
+
+        audio.addEventListener('play', () => {
+            updatePlayPauseIcon(true);
+        });
+
+        audio.addEventListener('pause', () => {
+            updatePlayPauseIcon(false);
+        });
+
+        audio.addEventListener('error', (e) => {
+            console.error('Audio error:', e);
+            showStatus('❌ Audio loading failed');
+        });
+
+        // Auto-play functionality with user interaction
+        let audioEnabled = false;
+
+        function enableAudio() {
+            if (!audioEnabled) {
+                audioEnabled = true;
+                audio.muted = false;
+                audio.volume = 0.3;
+
+                // Try to play
+                audio.play().then(() => {
+                    showStatus('🎵 Audio started automatically');
+                    updatePlayPauseIcon(true);
+                }).catch(() => {
+                    showStatus('🔍 Click play button to start audio');
+                });
+            }
+        }
+
+        // Enable audio on first user interaction
+        ['click', 'touchstart', 'keydown'].forEach(event => {
+            document.addEventListener(event, enableAudio, { once: true });
+        });
+
+        // Countdown timer function
+        function updateCountdown() {
+            const targetDate = new Date('2025-09-29T00:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                // Durga Puja has started
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+
+                document.querySelector('.main-title').textContent = 'মা এসেছেন';
+                document.querySelector('.subtitle').textContent = 'Maa Durga Has Arrived';
+            }
+        }
+
+        // Initialize
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Set initial button states
+        updatePlayPauseIcon(false);
+        updateMuteIcon(false);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                playPauseBtn.click();
+            } else if (e.code === 'KeyM') {
+                e.preventDefault();
+                muteBtn.click();
+            }
+        });
+
+    </script>
+</body>
+
+</html>
